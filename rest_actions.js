@@ -1,7 +1,7 @@
 const headers = {
   "Content-Type": "application/json",
-  "x-apikey": "60740776f592f7113340ef9b",
-  "cache-control": "no-cache",
+  // "x-apikey": "60740776f592f7113340ef9b",
+  // "cache-control": "no-cache",
 };
 
 export async function getJSON(url) {
