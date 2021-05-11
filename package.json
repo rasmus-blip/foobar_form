@@ -1,0 +1,26 @@
+{
+  "name": "foobar_form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasmus-blip/foobar_form.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rasmus-blip/foobar_form/issues"
+  },
+  "homepage": "https://github.com/rasmus-blip/foobar_form#readme",
+  "devDependencies": {
+    "sass": "^1.32.12",
+    "vite": "^2.3.0"
+  }
+}
