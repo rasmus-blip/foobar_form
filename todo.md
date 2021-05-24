@@ -1,0 +1,25 @@
+Create account form - ViGTIG
+
+Signing in (og alt herunder) - ViGTIG
+
+validation on each fieldset - ViGTIG
+
+general styling, margin here and there - VIGTIG
+
+Scroll-bar styling - VIGTIG
+
+IMG on "order" and "your order" - VIGTIG
+
+::after icons on input-fields - VIGTIG
+
+Logo - VIGTIG
+
+Loading screen - VIGTIG
+
+NPM credit card beatifier / validator - VIGTIG
+
+Succes-screen with queue ID - VIGTIG
+
+Order amountCounter align text + reconsider the size - VIGTIG
+
+Your order h2 styling - VIGTIG
