@@ -20,6 +20,6 @@ NPM credit card beatifier / validator - VIGTIG
 
 Succes-screen with queue ID - VIGTIG
 
-Order amountCounter align text + reconsider the size - VIGTIG
+Order amountCounter align text + reconsider the size - DONE
 
 Your order h2 styling - VIGTIG

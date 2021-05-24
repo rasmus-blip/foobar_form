@@ -28,12 +28,11 @@ fieldset {
   margin: 50px;
 
   & ul {
-    display: grid;
-    grid-gap: 15px;
     height: 100%;
     overflow-y: scroll;
   }
   & li {
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;

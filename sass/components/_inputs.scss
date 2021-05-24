@@ -23,16 +23,22 @@ input {
 }
 
 .amount_counter {
-  width: 40%;
+  width: 35%;
   display: flex;
   border-radius: 50px;
   overflow: hidden;
   box-shadow: $medium_outer;
   padding: 4px;
 
+  & input {
+    padding: 0.4rem 0.3rem;
+    text-align: center;
+  }
+
   & span {
     display: inline-flex;
     width: 100%;
+    color: $para_clr;
 
     // background-color: aqua;
     align-items: center;

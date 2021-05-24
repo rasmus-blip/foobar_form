@@ -11,11 +11,13 @@ legend {
 }
 
 label,
-p {
+p,
+h2 {
   font-family: "roboto", sans-serif;
   color: $para_clr;
   margin-bottom: 0.2rem;
   font-size: 1.2rem;
+  font-weight: 400;
 }
 
 input,
