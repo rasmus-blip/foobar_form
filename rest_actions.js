@@ -1,6 +1,6 @@
 const headers = {
   "Content-Type": "application/json",
-  // "x-apikey": "60740776f592f7113340ef9b",
+  // "x-apikey": "4e63c57a-f16b-4236-a140-d8adade5adc1",
   // "cache-control": "no-cache",
 };
 
@@ -13,13 +13,28 @@ export async function getJSON(url) {
   return jsonData;
 }
 
-export function post(data, url) {
+// export function post(data, url) {
+//   const postData = JSON.stringify(data);
+//   fetch(url, {
+//     method: "post",
+//     headers: headers,
+//     body: postData,
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//     });
+// }
+
+export async function post(data, url) {
   const postData = JSON.stringify(data);
-  fetch(url, {
+
+  const response = await fetch(url, {
     method: "post",
     headers: headers,
     body: postData,
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
+  });
+  const result = await response.json();
+
+  return result;
 }
