@@ -18,10 +18,44 @@ input {
 
   &:focus {
     box-shadow: $small_inner;
+    background-color: rgb(232, 240, 254);
+  }
+}
+
+.amount_counter {
+  width: 40%;
+  display: flex;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: $medium_outer;
+  padding: 4px;
+
+  & span {
+    display: inline-flex;
+    width: 100%;
+
+    // background-color: aqua;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+
+    &:active {
+      box-shadow: $small_inner;
+    }
+
+    &.minus {
+      margin-right: 4px;
+      border-radius: 50px 0 0 50px;
+    }
+
+    &.plus {
+      margin-left: 4px;
+      border-radius: 0 50px 50px 0;
+    }
   }
 
-  &:valid:not(:focus) {
-    background-color: rgb(232, 240, 254);
-    box-shadow: $small_inner;
+  & input {
+    width: 100%;
   }
 }

@@ -28,3 +28,9 @@ fieldset {
   justify-content: center;
   grid-gap: 2rem;
 }
+
+.flex_container {
+  display: flex;
+
+  grid-gap: 40px;
+}
