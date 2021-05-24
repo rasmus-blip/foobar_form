@@ -6,7 +6,7 @@ validation on each fieldset - DONE
 
 general styling, margin here and there - VIGTIG
 
-Scroll-bar styling - VIGTIG
+Scroll-bar styling - DONE
 
 IMG on "order" and "your order" - VIGTIG
 

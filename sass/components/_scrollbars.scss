@@ -1,0 +1,11 @@
+@import "../abstracts/";
+
+::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $heading_clr;
+  border-radius: 4px;
+}
