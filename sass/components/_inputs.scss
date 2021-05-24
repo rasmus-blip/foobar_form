@@ -1,0 +1,27 @@
+@import "../abstracts/";
+
+input {
+  width: 100%;
+  border: none;
+  background-color: $bg_clr;
+  outline: none;
+  padding: 0.5rem 1rem;
+  box-shadow: $medium_inner;
+  border-radius: 5px;
+
+  transition: box-shadow 0.2s, background-color 0.2s;
+
+  &::placeholder {
+    color: $para_clr;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    box-shadow: $small_inner;
+  }
+
+  &:valid:not(:focus) {
+    background-color: rgb(232, 240, 254);
+    box-shadow: $small_inner;
+  }
+}
