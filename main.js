@@ -1,12 +1,15 @@
 import "./sass/style.scss";
 import { post } from "./rest_actions.js";
 import { getJSON } from "./rest_actions.js";
+import { initialSlideCalc } from "./fieldset_change.js";
+import { slideFieldset } from "./fieldset_change.js";
 
 let orderList = [];
 
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+  initialSlideCalc();
   //prevent buttons from form-validation on click
   const allBtns = document.querySelectorAll("button");
   allBtns.forEach((btn) => {
@@ -15,9 +18,29 @@ async function init() {
     });
   });
 
-  document.querySelector(".no_sign_in").addEventListener("click", getBeersOnTap);
-  document.querySelector("#order .next").addEventListener("click", buildOrderList);
-  document.querySelector("#checkout button").addEventListener("click", submitOrders);
+  const nextButtons = document.querySelectorAll(".next");
+  nextButtons.forEach((nxtBtn) => {
+    nxtBtn.addEventListener("click", () => {
+      slideFieldset(nxtBtn);
+    });
+  });
+
+  const backButtons = document.querySelectorAll(".back");
+  backButtons.forEach((bckBtn) => {
+    bckBtn.addEventListener("click", () => {
+      slideFieldset(bckBtn);
+    });
+  });
+
+  document
+    .querySelector(".no_sign_in")
+    .addEventListener("click", getBeersOnTap);
+  document
+    .querySelector("#order .next")
+    .addEventListener("click", buildOrderList);
+  document
+    .querySelector("#checkout button")
+    .addEventListener("click", submitOrders);
 }
 
 async function getBeersOnTap() {

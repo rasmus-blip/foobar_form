@@ -9,23 +9,35 @@
   <body>
     <form action="order beer">
       <div id="fieldset_container">
-        <div id="fieldset-slider">
+        <div id="fieldset_slider">
           <fieldset id="sign_in">
             <legend>Sign in</legend>
 
             <div class="form_ctrl">
               <label for="username">Username / Email</label>
-              <input placeholder="User Name" type="text" name="username" id="username" />
+              <input
+                placeholder="User Name"
+                type="text"
+                name="username"
+                id="username"
+              />
             </div>
 
             <div class="form_ctrl">
               <label for="password">Password</label>
-              <input placeholder="***********" type="text" name="password" id="password" />
+              <input
+                placeholder="***********"
+                type="text"
+                name="password"
+                id="password"
+              />
             </div>
 
             <button>Sign in</button>
             <button class="txt_btn">Create account</button>
-            <button class="txt_btn no_sign_in">Continue without signing in</button>
+            <button class="txt_btn no_sign_in next">
+              Continue without signing in
+            </button>
           </fieldset>
 
           <fieldset id="order">
@@ -55,13 +67,23 @@
 
             <div class="form_ctrl">
               <label for="card_number">Card number</label>
-              <input placeholder="0123 4567 8901 1222" type="text" name="card_number" id="card_number" />
+              <input
+                placeholder="0123 4567 8901 1222"
+                type="text"
+                name="card_number"
+                id="card_number"
+              />
             </div>
 
             <div class="flex_container">
               <div class="form_ctrl">
                 <label for="exp_date">Exp. date</label>
-                <input placeholder="24/12" type="text" name="exp_date" id="exp_date" />
+                <input
+                  placeholder="24/12"
+                  type="text"
+                  name="exp_date"
+                  id="exp_date"
+                />
               </div>
               <div class="form_ctrl">
                 <label for="cvv">CVV</label>
