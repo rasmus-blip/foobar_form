@@ -1,0 +1,22 @@
+@import "../abstracts";
+
+.error {
+  color: $red_clr !important;
+  animation-name: kf_error_shake;
+  animation-iteration-count: 3;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+
+  &::after {
+    content: "!";
+  }
+}
+
+@keyframes kf_error_shake {
+  0% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}

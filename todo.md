@@ -2,7 +2,7 @@ Create account form - ViGTIG
 
 Signing in (og alt herunder) - ViGTIG
 
-validation on each fieldset - ViGTIG
+validation on each fieldset - DONE
 
 general styling, margin here and there - VIGTIG
 
