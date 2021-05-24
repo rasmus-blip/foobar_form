@@ -6,15 +6,20 @@
 
 legend {
   font-size: 2rem;
+  color: $heading_clr;
+  font-family: "roboto", sans-serif;
+}
+
+label,
+p {
+  font-family: "roboto", sans-serif;
   color: $para_clr;
-  font-family: "roboto", sans-serif;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
 }
 
-label {
-  font-family: "roboto", sans-serif;
-}
-
-input {
+input,
+button {
   color: $para_clr;
   font-size: 1.2rem;
   font-family: "roboto", sans-serif;

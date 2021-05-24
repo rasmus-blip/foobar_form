@@ -1,1 +1,36 @@
 @import "../abstracts/";
+
+button {
+  border: none;
+  background-color: $bg_clr;
+  box-shadow: $medium_outer;
+  display: block;
+  border-radius: 50px;
+  cursor: pointer;
+  &.submit {
+    padding: 1rem 1rem;
+    margin-top: 2rem;
+    width: 50%;
+    align-self: center;
+    border-radius: 50px;
+  }
+  &.txt_btn {
+    text-align: left;
+    text-decoration: underline;
+    box-shadow: none;
+  }
+  &.next:not(.txt_btn) {
+    width: 30px;
+    height: 30px;
+    background-image: url("./icons/next_icon.svg");
+    background-repeat: no-repeat;
+    box-shadow: none;
+  }
+  &.back {
+    width: 30px;
+    height: 30px;
+    background-image: url("./icons/back_icon.svg");
+    background-repeat: no-repeat;
+    box-shadow: none;
+  }
+}
