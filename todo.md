@@ -22,4 +22,4 @@ Succes-screen with queue ID - VIGTIG
 
 Order amountCounter align text + reconsider the size - DONE
 
-Your order h2 styling - VIGTIG
+Your order h2 styling - DONE

@@ -39,6 +39,10 @@ fieldset {
   }
 }
 
+.form_ctrl:not(li) {
+  display: grid;
+}
+
 #fieldset_container {
   width: 100%;
   overflow: hidden;

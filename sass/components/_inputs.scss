@@ -65,3 +65,39 @@ input {
     width: 100%;
   }
 }
+
+span.icon {
+  display: block;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: cover;
+  }
+
+  &.username::after {
+    background-image: url("../icons/person.svg");
+  }
+
+  &.password::after {
+    background-image: url("../icons/lock.svg");
+  }
+
+  &.cardnr::after {
+    background-image: url("../icons/card.svg");
+  }
+
+  &.date::after {
+    background-image: url("../icons/calendar.svg");
+  }
+
+  &.cvv::after {
+    background-image: url("../icons/question.svg");
+  }
+}

@@ -15,7 +15,7 @@ p,
 h2 {
   font-family: "roboto", sans-serif;
   color: $para_clr;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
   font-size: 1.2rem;
   font-weight: 400;
 }
@@ -25,4 +25,8 @@ button {
   color: $para_clr;
   font-size: 1.2rem;
   font-family: "roboto", sans-serif;
+}
+
+.txt_btn {
+  font-size: 0.9rem;
 }
