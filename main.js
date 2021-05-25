@@ -4,6 +4,9 @@ import { getJSON } from "./rest_actions.js";
 import { initialSlideCalc } from "./fieldset_change.js";
 import { slideFieldset } from "./fieldset_change.js";
 
+let signedIn = false;
+const accInfo = {};
+
 let orderList = [];
 
 window.addEventListener("DOMContentLoaded", init);
@@ -11,6 +14,7 @@ window.addEventListener("DOMContentLoaded", init);
 async function init() {
   initialSlideCalc("order_form");
   initialSlideCalc("account_form");
+
   //prevent buttons from form-validation on click
   const allBtns = document.querySelectorAll("button");
   allBtns.forEach((btn) => {
@@ -34,6 +38,23 @@ async function init() {
   });
 
   //for order form
+
+  document.querySelector("#sign_in .submit").addEventListener("click", async (e) => {
+    const username = document.querySelector("#username").value;
+    const password = document.querySelector("#password").value;
+    const signInResult = await requestSignIn(username, password);
+    if (signInResult === false) {
+      console.log("bad sign in request");
+    } else {
+      signInComplete(signInResult);
+    }
+  });
+
+  document.querySelector(".create_acc").addEventListener("click", (e) => {
+    document.querySelector("#account_form").hidden = false;
+    document.querySelector("body").style.transform = "translateY(-100%)";
+  });
+
   document.querySelector(".no_sign_in").addEventListener("click", (e) => {
     getBeersOnTap();
     slideFieldset(e.target, "order_form");
@@ -52,89 +73,123 @@ async function init() {
     slideFieldset(e.target, "order_form");
   });
 
-  document
-    .querySelector("#checkout button")
-    .addEventListener("click", submitOrders);
+  document.querySelector("#your_order .submit").addEventListener("click", async () => {
+    const result = await submitOrders();
+    if (result.status === 200) {
+      orderSubmitted(result.id);
+    } else {
+      alert("Oupss, this i not how its supposed to work...");
+    }
+  });
+
+  document.querySelector("#checkout button").addEventListener("click", async () => {
+    const result = await submitOrders();
+  });
 
   //for account form
-  document
-    .querySelector("#account_details .next")
-    .addEventListener("click", async (e) => {
+  document.querySelector("#account_details .next").addEventListener("click", async (e) => {
+    //Check syntax requirements
+    //USERNAME
+    const usernameIsValid = document.querySelector("#username_create").checkValidity();
+    if (usernameIsValid === false) {
+      document.querySelector(".error_span.username").textContent = "Username must be at least 4 characters";
+      document.querySelector(".error_span.username").classList.add("error");
+      document.querySelector("#username_create").addEventListener("click", rmError);
+    }
+
+    //Email
+    const emailIsValid = document.querySelector("#email").checkValidity();
+    if (emailIsValid === false) {
+      document.querySelector(".error_span.email").textContent = "Please enter a valid email";
+      document.querySelector(".error_span.email").classList.add("error");
+      document.querySelector("#email").addEventListener("click", rmError);
+    }
+
+    //PASSWORD
+    const passwordIsValid = document.querySelector("#password_create").checkValidity();
+    if (passwordIsValid === false) {
+      document.querySelector(".error_span.password_create").textContent = "Password must be at least 4 characters";
+      document.querySelector(".error_span.password_create").classList.add("error");
+      document.querySelector("#password_create").addEventListener("click", rmError);
+    }
+
+    //ARE PASSWORDS IDENTICAL
+    const firstPassword = document.querySelector("#password_create").value;
+    const secondPassword = document.querySelector("#repeat_password").value;
+    const identicalPasswords = firstPassword === secondPassword;
+    if (identicalPasswords === false) {
+      document.querySelector(".error_span.password").textContent = "Passwords are not identical";
+      document.querySelector(".error_span.password").classList.add("error");
+      document.querySelector("#repeat_password").addEventListener("click", rmError);
+    }
+
+    //If the basic requirements are met, check if account exist
+    if (identicalPasswords && usernameIsValid && emailIsValid && passwordIsValid) {
+      //Check if email // username are already registered
       //USERNAME
-      const usernameIsValid = document
-        .querySelector("#username_create")
-        .checkValidity();
       const username = document.querySelector("#username_create").value;
       const userNameExists = await checkAccount("user_name", username);
-      //if the username is not unique an error message will appear
       if (userNameExists === true) {
-        document.querySelector(".error_span.username").textContent =
-          "Username is already taken";
+        document.querySelector(".error_span.username").textContent = "Username is already taken";
         document.querySelector(".error_span.username").classList.add("error");
-      }
-      if (usernameIsValid === false) {
-        document.querySelector(".error_span.username").textContent =
-          "Username must be at least 4 characters";
-        document.querySelector(".error_span.username").classList.add("error");
+        document.querySelector("#username_create").addEventListener("click", rmError);
       }
 
       //EMAIL
-      const emailIsValid = document.querySelector("#email").checkValidity();
       const email = document.querySelector("#email").value;
       const emailExists = await checkAccount("email", email);
       //if the email is not unique an error message will appear
       if (emailExists === true) {
-        document.querySelector(".error_span.email").textContent =
-          "Email is not valid";
+        document.querySelector(".error_span.email").textContent = "Email is not valid";
         document.querySelector(".error_span.email").classList.add("error");
-      }
-      if (emailIsValid === false) {
-        document.querySelector(".error_span.email").textContent =
-          "Please enter a valid email";
-        document.querySelector(".error_span.email").classList.add("error");
-      }
-
-      //PASSWORD
-      const passwordIsValid = document
-        .querySelector("#password_create")
-        .checkValidity();
-      const firstPassword = document.querySelector("#password_create").value;
-      const secondPassword = document.querySelector("#repeat_password").value;
-      const identicalPasswords = firstPassword === secondPassword;
-      //if the passwords is not identical an error message will appear
-      if (identicalPasswords === false) {
-        document.querySelector(".error_span.password").textContent =
-          "Passwords are not identical";
-        document.querySelector(".error_span.password").classList.add("error");
-      }
-      if (passwordIsValid === false) {
-        document.querySelector(".error_span.password_create").textContent =
-          "Password must be at least 4 characters";
-        document
-          .querySelector(".error_span.password_create")
-          .classList.add("error");
+        document.querySelector("#email").addEventListener("click", rmError);
       }
 
       //if the username and email is unique to the database the two passwords are identical, procede your quest
-      if (
-        userNameExists === false &&
-        emailExists === false &&
-        identicalPasswords &&
-        usernameIsValid &&
-        emailIsValid &&
-        passwordIsValid
-      ) {
+      if (userNameExists === false && emailExists === false) {
         slideFieldset(e.target, "account_form");
       }
-    });
+    }
+  });
 
-  document
-    .querySelector("#card_details .submit")
-    .addEventListener("click", (e) => {
-      //validate credit card
-      //show succes screen
-      submitAccount();
-    });
+  document.querySelector("#card_details .submit").addEventListener("click", async (e) => {
+    //validate credit card
+
+    const response = await submitAccount();
+    if (response.status) {
+      alert("Oups... something is not completely right... pls reload");
+    } else {
+      displaySuccesScreen(response);
+      signInComplete(response);
+      setTimeout(() => {
+        document.querySelector("body").style.transform = "translateY(0)";
+      }, 3000);
+    }
+  });
+}
+
+function signInComplete(userData) {
+  signedIn = true;
+  accInfo.user = userData.user_name;
+  document.querySelector("#sign_in").remove();
+  document.querySelector("#checkout").remove();
+  document.querySelector("#your_order .submit").hidden = false;
+  document.querySelector("#your_order .next").style.display = "none";
+  document.querySelector("#order .back").style.display = "none";
+  initialSlideCalc("order_form");
+  getBeersOnTap();
+}
+
+function displaySuccesScreen(response) {
+  document.querySelector("#succes_screen span").textContent = response.user_name;
+  document.querySelector("#succes_screen").classList.add("show");
+}
+
+function rmError() {
+  this.removeEventListener("click", rmError);
+  const errorSpan = this.parentElement.parentElement.querySelector(".error");
+  errorSpan.textContent = "";
+  errorSpan.classList.remove("error");
 }
 
 async function checkAccount(property, value) {
@@ -145,7 +200,16 @@ async function checkAccount(property, value) {
   } else {
     return false;
   }
-  console.log(jsonData);
+}
+
+async function requestSignIn(username, password) {
+  const url = `https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database?q={"user_name": "${username}", "password": "${password}"}`;
+  const jsonData = await getJSON(url, "headersRestDB");
+  if (jsonData.length === 0) {
+    return false;
+  } else {
+    return jsonData;
+  }
 }
 
 async function submitAccount() {
@@ -157,11 +221,10 @@ async function submitAccount() {
     expiration_date: document.querySelector("#account_exp_date").value,
     cvv: document.querySelector("#account_cvv"),
   };
-  const url =
-    "https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database";
+  const url = "https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database";
 
   const result = await post(dataToPost, url, "headersRestDB");
-  console.log(result);
+  return result;
 }
 
 function triggerOrderError() {
@@ -226,7 +289,7 @@ function buildOrderList() {
 
   allInputs.forEach((elm) => {
     if (elm.value > 0) {
-      const theObject = { beer: elm.name, amount: elm.value };
+      const theObject = { name: elm.name, amount: elm.value };
       orderList.push(theObject);
     }
   });
@@ -243,12 +306,12 @@ function appendOrderList() {
 
   orderList.forEach((order) => {
     const klon = temp.cloneNode(true).content;
-    const convertedBeerName = convertBeerString(order.beer);
+    const convertedBeerName = convertBeerString(order.name);
 
     // klon.querySelector("img").src = convertedBeerName;
     // klon.querySelector("img").setAttribute("alt", order.beer);
 
-    klon.querySelector("h2").textContent = order.beer;
+    klon.querySelector("h2").textContent = order.name;
     klon.querySelector("p").textContent = order.amount;
 
     container.appendChild(klon);
@@ -257,13 +320,54 @@ function appendOrderList() {
   });
 
   document.querySelector("#your_order p span").textContent = toPay + "DKK";
-  document.querySelector("#checkout p span").textContent = toPay + "DKK";
+
+  if (signedIn === false) {
+    document.querySelector("#checkout p span").textContent = toPay + "DKK";
+  }
 }
 
 async function submitOrders() {
-  console.log(orderList);
   const url = "https://foobarfirefjerdedele.herokuapp.com/order";
-  const payLoad = [{ name: "GitHop", amount: 1 }];
-  const submitResult = await post(payLoad, url, "headersHeroku");
-  console.log(submitResult.id);
+  const submitResult = await post(orderList, url, "headersHeroku");
+  return submitResult;
+}
+
+async function orderSubmitted(id) {
+  const url = "https://foobarfirefjerdedele.herokuapp.com/";
+  const data = await getJSON(url, "headersHeroku");
+  const queue = data.queue;
+  const serving = data.serving.map((elm) => elm.id);
+
+  const queueNr = getPlaceInQueue(queue, id);
+  if (queueNr > 0) {
+    document.querySelector("#order_submitted span").textContent = queueNr;
+    document.querySelector("#order_submitted").classList.add("show");
+
+    setTimeout(() => {
+      orderSubmitted(id);
+    }, 1000);
+  } else if (serving.includes(id)) {
+    document.querySelector("#order_submitted p").textContent = "Your order is getting prepared";
+    document.querySelector("#order_submitted").classList.add("show");
+
+    setTimeout(() => {
+      orderSubmitted(id);
+    }, 1000);
+  } else {
+    document.querySelector("#order_submitted p").textContent = "Your order is ready";
+    document.querySelector("#order_submitted p").nextSibling.remove();
+    document.querySelector("#order_submitted").classList.add("show");
+  }
+}
+
+function getPlaceInQueue(queue, id) {
+  let result = 0;
+
+  queue.forEach((order) => {
+    if (order.id <= id) {
+      result++;
+    }
+  });
+
+  return result;
 }

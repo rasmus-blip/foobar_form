@@ -12,7 +12,10 @@ input {
   transition: box-shadow 0.2s, background-color 0.2s;
 
   &:not(:placeholder-shown):not(:focus):invalid {
-    border: hotpink solid 2px;
+    box-shadow: $medium_inner, 0px 0px 4px $red_clr;
+  }
+  &:not(:placeholder-shown):not(:focus):valid {
+    box-shadow: $medium_inner, 0px 0px 2px $green_clr;
   }
 
   &::placeholder {

@@ -7,224 +7,189 @@
     <title>FooBar Form</title>
   </head>
   <body>
-    <form action="order beer" id="order_form" hidden>
-      <div class="fieldset_container">
-        <div class="fieldset_slider">
-          <fieldset id="sign_in">
-            <legend>Sign in</legend>
-
-            <div class="form_ctrl">
-              <label for="username">Username / Email</label>
-              <span class="username icon"
-                ><input
-                  placeholder="User Name"
-                  type="text"
-                  name="username"
-                  id="username"
-              /></span>
-            </div>
-
-            <div class="form_ctrl">
-              <label for="password">Password</label>
-              <span class="password icon">
-                <input
-                  placeholder="••••••••••"
-                  type="password"
-                  name="password"
-                  id="password"
-              /></span>
-            </div>
-
-            <button class="submit">Sign in</button>
-            <button class="txt_btn">Create account</button>
-            <button class="txt_btn no_sign_in next">
-              Continue without signing in
-            </button>
-          </fieldset>
-
-          <fieldset id="order">
-            <legend>Order</legend>
-            <p>Select your beer(s)</p>
-            <ul id="beer_container"></ul>
-
-            <div class="arrow_container">
-              <button class="back"></button>
-              <button class="next"></button>
-            </div>
-          </fieldset>
-
-          <fieldset id="your_order">
-            <legend>Your Order</legend>
-            <ul id="order_container"></ul>
-
-            <p>Total: <span></span></p>
-
-            <div class="arrow_container">
-              <button class="back"></button>
-              <button class="next"></button>
-            </div>
-          </fieldset>
-
-          <fieldset id="checkout">
-            <legend>Payment info</legend>
-
-            <div class="form_ctrl">
-              <label for="card_number">Card number</label>
-              <span class="cardnr icon">
-                <input
-                  placeholder="0123 4567 8901 1222"
-                  type="text"
-                  name="card_number"
-                  id="card_number"
-              /></span>
-            </div>
-
-            <div class="flex_container">
-              <div class="form_ctrl">
-                <label for="exp_date">Exp. date</label>
-                <span class="date icon">
-                  <input
-                    placeholder="24/12"
-                    type="text"
-                    name="exp_date"
-                    id="exp_date"
-                /></span>
-              </div>
-              <div class="form_ctrl">
-                <label for="cvv">CVV</label>
-                <span class="cvv icon">
-                  <input placeholder="123" type="text" name="cvv" id="cvv"
-                /></span>
-              </div>
-            </div>
-
-            <p>Total: <span></span></p>
-
-            <button class="submit">Submit order</button>
-
-            <div class="arrow_container">
-              <button class="back"></button>
-            </div>
-          </fieldset>
+    <section>
+      <form action="order beer" id="order_form">
+        <div id="order_submitted">
+          <h2>Order recieved!</h2>
+          <p>Your are currently nr <span class="queue_nr"></span> in line.</p>
+          <p>Your order will be served to you shortly.</p>
         </div>
-      </div>
-    </form>
+        <div class="fieldset_container">
+          <div class="fieldset_slider">
+            <fieldset id="sign_in">
+              <legend>Sign in</legend>
 
-    <form action="create account" id="account_form">
-      <div class="fieldset_container">
-        <div class="fieldset_slider">
-          <fieldset id="account_details">
-            <legend>Create account</legend>
-            <h2>Account details</h2>
-            <div class="form_ctrl">
-              <label for="email">Email</label>
-              <span class="error_span email"></span>
-              <span class="email icon">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="john@doe.com"
-                  autocomplete="email"
-                  required
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                />
-              </span>
-            </div>
-            <div class="form_ctrl">
-              <label for="username_create">Username</label>
-              <span class="error_span username"></span>
-              <span class="username icon">
-                <input
-                  id="username_create"
-                  type="text"
-                  name="username"
-                  placeholder="John Doe"
-                  minlength="4"
-                  required
-                />
-              </span>
-            </div>
-            <div class="form_ctrl">
-              <label for="password_create">Password</label>
-              <span class="error_span password_create"></span>
-              <span class="password icon">
-                <input
-                  id="password_create"
-                  type="password"
-                  name="password_create"
-                  placeholder="••••••••••"
-                  autocomplete="new-password"
-                  minlength="4"
-                  required
-                />
-              </span>
-            </div>
-            <div class="form_ctrl">
-              <label for="repeat_password">Repeat password</label>
-              <span class="error_span password"></span>
-              <span class="password icon">
-                <input
-                  type="password"
-                  id="repeat_password"
-                  name="repeat_password"
-                  placeholder="••••••••••"
-                  autocomplete="new-password"
-                  minlength="4"
-                  required
-                />
-              </span>
-            </div>
-            <div class="arrow_container">
-              <button class="next"></button>
-            </div>
-          </fieldset>
-          <fieldset id="card_details">
-            <legend>Card details</legend>
-
-            <div class="form_ctrl">
-              <label for="account_card_number">Card number</label>
-              <span class="cardnr icon">
-                <input
-                  placeholder="0123 4567 8901 1222"
-                  type="text"
-                  name="card_number"
-                  id="account_card_number"
-                  maxlength="16"
-              /></span>
-            </div>
-
-            <div class="flex_container">
               <div class="form_ctrl">
-                <label for="account_exp_date">Exp. date</label>
-                <span class="date icon">
-                  <input
-                    placeholder="24/12"
-                    type="text"
-                    name="exp_date"
-                    id="account_exp_date"
-                /></span>
+                <label for="username">Username / Email</label>
+                <span class="username icon"><input placeholder="User Name" type="text" name="username" id="username" /></span>
               </div>
+
               <div class="form_ctrl">
-                <label for="account_cvv">CVV</label>
-                <span class="cvv icon">
-                  <input
-                    placeholder="123"
-                    type="text"
-                    name="cvv"
-                    id="account_cvv"
-                /></span>
+                <label for="password">Password</label>
+                <span class="password icon"> <input placeholder="••••••••••" type="password" name="password" id="password" /></span>
               </div>
-            </div>
-            <button class="submit">Create account</button>
-            <div class="arrow_container">
-              <button class="back"></button>
-            </div>
-          </fieldset>
-          <div id="account_succes" hidden></div>
+
+              <button class="submit">Sign in</button>
+              <button class="txt_btn create_acc">Create account</button>
+              <button class="txt_btn no_sign_in next">Continue without signing in</button>
+            </fieldset>
+
+            <fieldset id="order">
+              <legend>Order</legend>
+              <p>Select your beer(s)</p>
+              <ul id="beer_container"></ul>
+
+              <div class="arrow_container">
+                <button class="back"></button>
+                <button class="next"></button>
+              </div>
+            </fieldset>
+
+            <fieldset id="your_order">
+              <legend>Your Order</legend>
+              <ul id="order_container"></ul>
+
+              <p>Total: <span></span></p>
+
+              <button class="submit" hidden="true">Submit order</button>
+
+              <div class="arrow_container">
+                <button class="back"></button>
+                <button class="next"></button>
+              </div>
+            </fieldset>
+
+            <fieldset id="checkout">
+              <legend>Payment info</legend>
+
+              <div class="form_ctrl">
+                <label for="card_number">Card number</label>
+                <span class="cardnr icon"> <input placeholder="0123 4567 8901 1222" type="text" name="card_number" id="card_number" /></span>
+              </div>
+
+              <div class="flex_container">
+                <div class="form_ctrl">
+                  <label for="exp_date">Exp. date</label>
+                  <span class="date icon"> <input placeholder="24/12" type="text" name="exp_date" id="exp_date" /></span>
+                </div>
+                <div class="form_ctrl">
+                  <label for="cvv">CVV</label>
+                  <span class="cvv icon"> <input placeholder="123" type="text" name="cvv" id="cvv" /></span>
+                </div>
+              </div>
+
+              <p>Total: <span></span></p>
+
+              <button class="submit">Submit order</button>
+
+              <div class="arrow_container">
+                <button class="back"></button>
+              </div>
+            </fieldset>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </section>
+
+    <section>
+      <form action="create account" id="account_form" hidden="true">
+        <div class="loading"></div>
+        <div id="succes_screen">
+          <h2>Account createc!</h2>
+          <p>Welcome <span></span></p>
+        </div>
+
+        <div class="fieldset_container">
+          <div class="fieldset_slider">
+            <fieldset id="account_details">
+              <legend>Create account</legend>
+              <h2>Account details</h2>
+              <div class="form_ctrl">
+                <label for="email">Email</label>
+                <span class="error_span email"></span>
+                <span class="email icon">
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="john@doe.com"
+                    autocomplete="email"
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  />
+                </span>
+              </div>
+              <div class="form_ctrl">
+                <label for="username_create">Username</label>
+                <span class="error_span username"></span>
+                <span class="username icon">
+                  <input id="username_create" type="text" name="username" placeholder="John Doe" minlength="4" required />
+                </span>
+              </div>
+              <div class="form_ctrl">
+                <label for="password_create">Password</label>
+                <span class="error_span password_create"></span>
+                <span class="password icon">
+                  <input
+                    id="password_create"
+                    type="password"
+                    name="password_create"
+                    placeholder="••••••••••"
+                    autocomplete="new-password"
+                    minlength="4"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="form_ctrl">
+                <label for="repeat_password">Repeat password</label>
+                <span class="error_span password"></span>
+                <span class="password icon">
+                  <input
+                    type="password"
+                    id="repeat_password"
+                    name="repeat_password"
+                    placeholder="••••••••••"
+                    autocomplete="new-password"
+                    minlength="4"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="arrow_container">
+                <button class="next"></button>
+              </div>
+            </fieldset>
+            <fieldset id="card_details">
+              <legend>Card details</legend>
+
+              <div class="form_ctrl">
+                <label for="account_card_number">Card number</label>
+                <span class="cardnr icon">
+                  <input placeholder="0123 4567 8901 1222" type="text" name="card_number" id="account_card_number" maxlength="16"
+                /></span>
+              </div>
+
+              <div class="flex_container">
+                <div class="form_ctrl">
+                  <label for="account_exp_date">Exp. date</label>
+                  <span class="date icon"> <input placeholder="24/12" type="text" name="exp_date" id="account_exp_date" /></span>
+                </div>
+                <div class="form_ctrl">
+                  <label for="account_cvv">CVV</label>
+                  <span class="cvv icon"> <input placeholder="123" type="text" name="cvv" id="account_cvv" /></span>
+                </div>
+              </div>
+              <button class="submit">Create account</button>
+              <div class="arrow_container">
+                <button class="back"></button>
+              </div>
+            </fieldset>
+            <div id="account_succes" hidden></div>
+          </div>
+        </div>
+      </form>
+    </section>
 
     <template id="beer_temp">
       <li class="form_ctrl">
