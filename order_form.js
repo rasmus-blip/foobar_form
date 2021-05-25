@@ -1,5 +1,28 @@
 "use strict";
 import { getJSON } from "./rest_actions.js";
+import { setUpAccountCreation } from "./create_account.js";
+import { prepareSignInRequest } from "./sign_in.js";
+
+export function setUpSignInField() {
+  //SIGN IN
+  const signInBtn = document.querySelector("#sign_in .submit");
+  signInBtn.addEventListener("click", prepareSignInRequest);
+
+  //CREATE ACCOUNT
+  const createAccBtn = document.querySelector(".create_acc");
+  createAccBtn.addEventListener("click", () => {
+    setUpAccountCreation();
+    document.querySelector("body").style.transform = "translateY(-100%)";
+    document.querySelector("#account_form").hidden = false;
+  });
+
+  //ORDER WITHOUT ACCOUNT
+  const noAccountBtn = document.querySelector(".no_sign_in");
+  noAccountBtn.addEventListener("click", (e) => {
+    getBeersOnTap();
+    slideFieldset(e.target, "order_form");
+  });
+}
 
 export async function getBeersOnTap() {
   const url = "https://foobarfirefjerdedele.herokuapp.com/";
