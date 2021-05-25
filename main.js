@@ -9,7 +9,8 @@ let orderList = [];
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-  initialSlideCalc();
+  initialSlideCalc("order_form");
+  initialSlideCalc("account_form");
   //prevent buttons from form-validation on click
   const allBtns = document.querySelectorAll("button");
   allBtns.forEach((btn) => {
@@ -25,32 +26,49 @@ async function init() {
   //     });
   //   });
 
-  const backButtons = document.querySelectorAll(".back");
-  backButtons.forEach((bckBtn) => {
+  const backButtonsOrder = document.querySelectorAll("#order_form .back");
+  backButtonsOrder.forEach((bckBtn) => {
     bckBtn.addEventListener("click", () => {
-      slideFieldset(bckBtn);
+      slideFieldset(bckBtn, "order_form");
     });
   });
 
+  const backButtonsAccount = document.querySelectorAll("#account_form .back");
+  backButtonsAccount.forEach((bckBtn) => {
+    bckBtn.addEventListener("click", () => {
+      slideFieldset(bckBtn, "account_form");
+    });
+  });
+
+  //for order form
   document.querySelector(".no_sign_in").addEventListener("click", (e) => {
     getBeersOnTap();
-    slideFieldset(e.target);
+    slideFieldset(e.target, "order_form");
   });
 
   document.querySelector("#order .next").addEventListener("click", (e) => {
     buildOrderList();
     if (orderList.length > 0) {
-      slideFieldset(e.target);
+      slideFieldset(e.target, "order_form");
     } else {
       triggerOrderError();
     }
   });
 
   document.querySelector("#your_order .next").addEventListener("click", (e) => {
-    slideFieldset(e.target);
+    slideFieldset(e.target, "order_form");
   });
 
-  document.querySelector("#checkout button").addEventListener("click", submitOrders);
+  document
+    .querySelector("#checkout button")
+    .addEventListener("click", submitOrders);
+
+  //for account form
+  document
+    .querySelector("#account_details .next")
+    .addEventListener("click", (e) => {
+      slideFieldset(e.target, "account_form");
+    });
 }
 
 function triggerOrderError() {

@@ -43,13 +43,13 @@ fieldset {
   display: grid;
 }
 
-#fieldset_container {
+.fieldset_container {
   width: 100%;
   overflow: hidden;
   height: 100%;
 }
 
-#fieldset_slider {
+.fieldset_slider {
   height: 100%;
   display: flex;
   transform: translateX(var(--slide-distance));
