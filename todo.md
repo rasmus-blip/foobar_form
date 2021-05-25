@@ -1,4 +1,4 @@
-Create account form - ViGTIG
+Create account form - ongoing
 
 Signing in (og alt herunder) - ViGTIG
 
@@ -10,7 +10,7 @@ Scroll-bar styling - DONE
 
 IMG on "order" and "your order" - VIGTIG
 
-::after icons on input-fields - VIGTIG
+::after icons on input-fields - done
 
 Logo - VIGTIG
 
