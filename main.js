@@ -132,8 +132,8 @@ async function init() {
     .querySelector("#card_details .submit")
     .addEventListener("click", (e) => {
       //validate credit card
-      //check if account already exists
       //show succes screen
+      submitAccount();
     });
 }
 
@@ -148,9 +148,21 @@ async function checkAccount(property, value) {
   console.log(jsonData);
 }
 
-// function submitAccount() {
-//   console.log("yo");
-// }
+async function submitAccount() {
+  const dataToPost = {
+    user_name: document.querySelector("#username_create").value,
+    email: document.querySelector("#email").value,
+    password: document.querySelector("#password_create").value,
+    card_number: document.querySelector("#account_card_number").value,
+    expiration_date: document.querySelector("#account_exp_date").value,
+    cvv: document.querySelector("#account_cvv"),
+  };
+  const url =
+    "https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database";
+
+  const result = await post(dataToPost, url, "headersRestDB");
+  console.log(result);
+}
 
 function triggerOrderError() {
   document.querySelector("#order p").classList.remove("error");
