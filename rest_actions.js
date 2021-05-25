@@ -1,7 +1,13 @@
-const headers = {
+const headersHeroku = {
   "Content-Type": "application/json",
   // "x-apikey": "4e63c57a-f16b-4236-a140-d8adade5adc1",
   // "cache-control": "no-cache",
+};
+
+const headersRestDB = {
+  "Content-Type": "application/json",
+  "x-apikey": "01ed00f500311dd23ecf06935dd8c1e1b3836",
+  "cache-control": "no-cache",
 };
 
 export async function getJSON(url) {
