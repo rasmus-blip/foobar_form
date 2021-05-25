@@ -19,13 +19,6 @@ async function init() {
     });
   });
 
-  //   const nextButtons = document.querySelectorAll(".next");
-  //   nextButtons.forEach((nxtBtn) => {
-  //     nxtBtn.addEventListener("click", () => {
-  //       slideFieldset(nxtBtn);
-  //     });
-  //   });
-
   const backButtonsOrder = document.querySelectorAll("#order_form .back");
   backButtonsOrder.forEach((bckBtn) => {
     bckBtn.addEventListener("click", () => {
@@ -67,9 +60,29 @@ async function init() {
   document
     .querySelector("#account_details .next")
     .addEventListener("click", (e) => {
+      checkAccountName();
       slideFieldset(e.target, "account_form");
     });
+
+  document
+    .querySelector("#card_details .submit")
+    .addEventListener("click", (e) => {
+      //validate credit card
+      //check if account already exists
+      //show succes screen
+    });
 }
+
+async function checkAccountName() {
+  const url =
+    "https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database";
+  const jsonData = await getJSON(url, "headersRestDB");
+  console.log(jsonData);
+}
+
+// function submitAccount() {
+//   console.log("yo");
+// }
 
 function triggerOrderError() {
   document.querySelector("#order p").classList.remove("error");
@@ -79,7 +92,7 @@ function triggerOrderError() {
 
 async function getBeersOnTap() {
   const url = "https://foobarfirefjerdedele.herokuapp.com/";
-  const jsonData = await getJSON(url);
+  const jsonData = await getJSON(url, "headersHeroku");
   const taps = jsonData.taps;
 
   appendBeers(taps);
@@ -171,6 +184,6 @@ async function submitOrders() {
   console.log(orderList);
   const url = "https://foobarfirefjerdedele.herokuapp.com/order";
   const payLoad = [{ name: "GitHop", amount: 1 }];
-  const submitResult = await post(payLoad, url);
+  const submitResult = await post(payLoad, url, "headersHeroku");
   console.log(submitResult.id);
 }
