@@ -118,6 +118,7 @@
             <h2>Account details</h2>
             <div class="form_ctrl">
               <label for="email">Email</label>
+              <span class="error_span email"></span>
               <span class="email icon">
                 <input
                   id="email"
@@ -125,23 +126,28 @@
                   name="email"
                   placeholder="john@doe.com"
                   autocomplete="email"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 />
               </span>
             </div>
             <div class="form_ctrl">
               <label for="username_create">Username</label>
+              <span class="error_span username"></span>
               <span class="username icon">
                 <input
                   id="username_create"
                   type="text"
                   name="username"
                   placeholder="John Doe"
-                  autocomplete="username"
+                  minlength="4"
+                  required
                 />
               </span>
             </div>
             <div class="form_ctrl">
               <label for="password_create">Password</label>
+              <span class="error_span password_create"></span>
               <span class="password icon">
                 <input
                   id="password_create"
@@ -149,11 +155,14 @@
                   name="password_create"
                   placeholder="••••••••••"
                   autocomplete="new-password"
+                  minlength="4"
+                  required
                 />
               </span>
             </div>
             <div class="form_ctrl">
               <label for="repeat_password">Repeat password</label>
+              <span class="error_span password"></span>
               <span class="password icon">
                 <input
                   type="password"
@@ -161,6 +170,8 @@
                   name="repeat_password"
                   placeholder="••••••••••"
                   autocomplete="new-password"
+                  minlength="4"
+                  required
                 />
               </span>
             </div>
@@ -179,6 +190,7 @@
                   type="text"
                   name="card_number"
                   id="account_card_number"
+                  maxlength="16"
               /></span>
             </div>
 

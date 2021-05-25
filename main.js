@@ -59,9 +59,73 @@ async function init() {
   //for account form
   document
     .querySelector("#account_details .next")
-    .addEventListener("click", (e) => {
-      checkAccountName();
-      slideFieldset(e.target, "account_form");
+    .addEventListener("click", async (e) => {
+      //USERNAME
+      const usernameIsValid = document
+        .querySelector("#username_create")
+        .checkValidity();
+      const username = document.querySelector("#username_create").value;
+      const userNameExists = await checkAccount("user_name", username);
+      //if the username is not unique an error message will appear
+      if (userNameExists === true) {
+        document.querySelector(".error_span.username").textContent =
+          "Username is already taken";
+        document.querySelector(".error_span.username").classList.add("error");
+      }
+      if (usernameIsValid === false) {
+        document.querySelector(".error_span.username").textContent =
+          "Username must be at least 4 characters";
+        document.querySelector(".error_span.username").classList.add("error");
+      }
+
+      //EMAIL
+      const emailIsValid = document.querySelector("#email").checkValidity();
+      const email = document.querySelector("#email").value;
+      const emailExists = await checkAccount("email", email);
+      //if the email is not unique an error message will appear
+      if (emailExists === true) {
+        document.querySelector(".error_span.email").textContent =
+          "Email is not valid";
+        document.querySelector(".error_span.email").classList.add("error");
+      }
+      if (emailIsValid === false) {
+        document.querySelector(".error_span.email").textContent =
+          "Please enter a valid email";
+        document.querySelector(".error_span.email").classList.add("error");
+      }
+
+      //PASSWORD
+      const passwordIsValid = document
+        .querySelector("#password_create")
+        .checkValidity();
+      const firstPassword = document.querySelector("#password_create").value;
+      const secondPassword = document.querySelector("#repeat_password").value;
+      const identicalPasswords = firstPassword === secondPassword;
+      //if the passwords is not identical an error message will appear
+      if (identicalPasswords === false) {
+        document.querySelector(".error_span.password").textContent =
+          "Passwords are not identical";
+        document.querySelector(".error_span.password").classList.add("error");
+      }
+      if (passwordIsValid === false) {
+        document.querySelector(".error_span.password_create").textContent =
+          "Password must be at least 4 characters";
+        document
+          .querySelector(".error_span.password_create")
+          .classList.add("error");
+      }
+
+      //if the username and email is unique to the database the two passwords are identical, procede your quest
+      if (
+        userNameExists === false &&
+        emailExists === false &&
+        identicalPasswords &&
+        usernameIsValid &&
+        emailIsValid &&
+        passwordIsValid
+      ) {
+        slideFieldset(e.target, "account_form");
+      }
     });
 
   document
@@ -73,10 +137,14 @@ async function init() {
     });
 }
 
-async function checkAccountName() {
-  const url =
-    "https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database";
+async function checkAccount(property, value) {
+  const url = `https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database?q={"${property}": "${value}"}`;
   const jsonData = await getJSON(url, "headersRestDB");
+  if (jsonData.length === 1) {
+    return true;
+  } else {
+    return false;
+  }
   console.log(jsonData);
 }
 

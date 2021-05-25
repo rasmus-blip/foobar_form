@@ -11,6 +11,10 @@ input {
 
   transition: box-shadow 0.2s, background-color 0.2s;
 
+  &:not(:placeholder-shown):not(:focus):invalid {
+    border: hotpink solid 2px;
+  }
+
   &::placeholder {
     color: $para_clr;
     opacity: 0.5;
