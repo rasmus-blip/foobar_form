@@ -15,6 +15,10 @@ export async function submitOrder() {
   }
 }
 
+//Creates tracking data about the order - Calls it-self untill order is done
+//If its in the queue-list, display the id's number in line
+//If its in the serving-list, display that its getting prepared
+//If its in either lists, diplay that the order is finished
 async function orderTracking(id) {
   const url = "https://foobarfirefjerdedele.herokuapp.com/";
   const data = await getJSON(url, "headersHeroku");
@@ -43,6 +47,7 @@ async function orderTracking(id) {
   }
 }
 
+//Returns the index + 1 of the queueObj with same id as the subitted order
 function getPlaceInQueue(queue, id) {
   let result = 0;
 
@@ -55,6 +60,7 @@ function getPlaceInQueue(queue, id) {
   return result;
 }
 
+//Builds the order list, and stores it globally (in this files scope only)
 export function buildOrderList() {
   const allInputs = document.querySelectorAll("#order input");
   orderList = [];
