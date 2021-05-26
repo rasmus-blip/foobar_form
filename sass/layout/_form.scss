@@ -12,17 +12,12 @@ section {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 20px;
 }
 
 form {
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 500px;
-  max-height: 700px;
-  box-shadow: $medium_inner;
-  border-radius: 10px;
 }
 
 fieldset {
@@ -31,7 +26,7 @@ fieldset {
   flex-direction: column;
   justify-content: center;
   grid-gap: 2rem;
-  margin: 50px;
+  margin: 30px;
 
   & ul {
     height: 100%;
@@ -39,7 +34,7 @@ fieldset {
     overflow-y: scroll;
   }
   & li {
-    margin: 50px 0;
+    margin: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,6 +42,10 @@ fieldset {
 
   &#order ul {
     box-shadow: $small_inner;
+
+    & li {
+      margin: 4rem 0;
+    }
   }
 }
 
@@ -165,5 +164,22 @@ figure {
     display: flex;
     flex-direction: column;
     grid-gap: 2rem;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  section {
+    padding: 20px;
+  }
+
+  form {
+    max-width: 500px;
+    max-height: 700px;
+    box-shadow: $medium_inner;
+    border-radius: 10px;
+  }
+
+  fieldset {
+    margin: 50px;
   }
 }

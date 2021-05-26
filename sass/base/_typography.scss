@@ -1,7 +1,7 @@
 @import "../abstracts/";
 
 :root {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 legend {
@@ -15,7 +15,7 @@ p,
 h2 {
   font-family: "roboto", sans-serif;
   color: $para_clr;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.6rem;
   font-size: 1.2rem;
   font-weight: 400;
 }
@@ -29,4 +29,10 @@ button {
 
 .txt_btn {
   font-size: 0.9rem;
+}
+
+@media only screen and (min-width: 500px) {
+  :root {
+    font-size: 16px;
+  }
 }
