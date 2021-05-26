@@ -6,6 +6,7 @@ import { initialSlideCalc } from "./fieldset_change";
 let signedIn = false;
 const accInfo = {};
 
+// Gets data for the sign in request, and detemerines what to do depending on sign in result
 export async function prepareSignInRequest() {
   this.removeEventListener("click", prepareSignInRequest);
   const username = document.querySelector("#username").value;
@@ -20,6 +21,18 @@ export async function prepareSignInRequest() {
   }
 }
 
+// if succes, returns userdata, else return false
+async function requestSignIn(username, password) {
+  const url = `https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database?q={"user_name": "${username}", "password": "${password}"}`;
+  const jsonData = await getJSON(url, "headersRestDB");
+  if (jsonData.length === 0) {
+    return false;
+  } else {
+    return jsonData;
+  }
+}
+
+// Removes the sign in & card info fieldsets and reCalcs the order-forms slide-width
 export function signInComplete(userData) {
   signedIn = true;
   accInfo.user = userData.user_name;
@@ -30,14 +43,4 @@ export function signInComplete(userData) {
   document.querySelector("#order .back").style.display = "none";
   initialSlideCalc("order_form");
   getBeersOnTap();
-}
-
-async function requestSignIn(username, password) {
-  const url = `https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database?q={"user_name": "${username}", "password": "${password}"}`;
-  const jsonData = await getJSON(url, "headersRestDB");
-  if (jsonData.length === 0) {
-    return false;
-  } else {
-    return jsonData;
-  }
 }
