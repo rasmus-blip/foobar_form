@@ -10,6 +10,11 @@ window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   document.addEventListener("keydown", checkForTab);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  });
 
   const cardNrMask = new Inputmask(`9999 9999 9999 9999`);
   const exprDateMask = new Inputmask(`99/99`);

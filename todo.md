@@ -30,8 +30,8 @@ Position next / back btns - done
 
 general styling, margin here and there - VIGTIG
 
-Be sure tabbing dont breake the site, double clicking, ENTERing - VIGTIG
+Be sure tabbing dont breake the site, double clicking, ENTERing - DONE
 
-Fix typos - VIGTIG
+Fix typos - DONE
 
 Logo - VIGTIG
