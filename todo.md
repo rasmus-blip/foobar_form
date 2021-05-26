@@ -24,9 +24,9 @@ remove green validation on beerCounter - DONE;
 
 Cvv, exp date max length - DONE;
 
-::after icons on input-fields - done (email icon are missing)
+::after icons on input-fields - done
 
-Position next / back btns - VIGTIG
+Position next / back btns - done
 
 general styling, margin here and there - VIGTIG
 

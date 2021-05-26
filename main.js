@@ -9,6 +9,7 @@ import Inputmask from "inputmask";
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
+  document.addEventListener("keydown", checkForTab);
   const cardNrMask = new Inputmask(`9999 9999 9999 9999`);
   const exprDateMask = new Inputmask(`99/99`);
   const cvvMask = new Inputmask(`999`);
@@ -35,4 +36,10 @@ function init() {
 
   setUpOrderForm();
   setUpAccountCreation();
+}
+
+function checkForTab(event) {
+  if (event.key == "Tab") {
+    console.log("hej mathias");
+  }
 }
