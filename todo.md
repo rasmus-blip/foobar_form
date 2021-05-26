@@ -10,7 +10,7 @@ IMG on "order" and "your order" - INITIALLY DONE
 
 ::after icons on input-fields - done (email icon are missing)
 
-Loading screen - VIGTIG
+Loading screen - DONE
 
 NPM credit card beatifier / validator - VIGTIG
 
@@ -20,11 +20,11 @@ Order amountCounter align text + reconsider the size - DONE
 
 Your order h2 styling - DONE
 
-Clean up JS - VIGTIG
+Clean up JS - SOMEWHAT DONE
 
 Position next / back btns - VIGTIG
 
-remove green validation on beerCounter - VIGTIG;
+remove green validation on beerCounter - DONE;
 
 Be sure tabbing dont breake the site, double clicking, ENTERing - VIGTIG
 
