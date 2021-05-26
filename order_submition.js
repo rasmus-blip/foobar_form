@@ -4,12 +4,15 @@ import { post, getJSON } from "./rest_actions.js";
 let orderList = [];
 
 export async function submitOrder() {
+  console.log("hej");
+  this.removeEventListener("click", submitOrder);
   const url = "https://foobarfirefjerdedele.herokuapp.com/order";
   const result = await post(orderList, url, "headersHeroku");
 
   if (result.status === 200) {
     orderTracking(result.id);
   } else {
+    this.addEventListener("click", submitOrder);
     alert("Oupss, this i not how its supposed to work...");
   }
 }
