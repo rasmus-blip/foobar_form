@@ -1,17 +1,11 @@
 "use strict";
 
 import "./sass/style.scss";
-import { initialSlideCalc } from "./fieldset_change.js";
-import { slideFieldset } from "./fieldset_change.js";
-
+import { initialSlideCalc, slideFieldset } from "./fieldset_change.js";
+import { buildOrderList, submitOrder } from "./order_submition.js";
 import { setUpAccountCreation } from "./create_account.js";
 import { prepareSignInRequest } from "./sign_in.js";
-
 import { appendOrderList } from "./order_form";
-
-import { buildOrderList } from "./order_submition.js";
-import { submitOrder } from "./order_submition.js";
-
 import { getJSON } from "./rest_actions.js";
 
 window.addEventListener("DOMContentLoaded", init);

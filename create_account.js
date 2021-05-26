@@ -1,36 +1,26 @@
 "use strict";
-import { post } from "./rest_actions.js";
-import { getJSON } from "./rest_actions.js";
+import { post, getJSON } from "./rest_actions.js";
 import { signInComplete } from "./sign_in.js";
-
 import { slideFieldset } from "./fieldset_change.js";
 
 export function setUpAccountCreation() {
-  document.querySelector("#account_details .next").addEventListener("click", async (e) => {
-    const syntaxReqMet = checkSyntaxRequirements();
+  document.querySelector("#account_details .next").addEventListener("click", validateAccDetails);
+  document.querySelector("#card_details .submit").addEventListener("click", prepareSubmitRequest);
+}
 
-    if (syntaxReqMet) {
-      const isUnique = doesAccountExist();
+//
+//
+// Account details validation
+async function validateAccDetails() {
+  const syntaxReqMet = checkSyntaxRequirements();
 
-      if (isUnique) {
-        slideFieldset(e.target, "account_form");
-      }
+  if (syntaxReqMet) {
+    const isUnique = doesAccountExist();
+
+    if (isUnique) {
+      slideFieldset(e.target, "account_form");
     }
-  });
-
-  document.querySelector("#card_details .submit").addEventListener("click", async (e) => {
-    //validate credit card
-    const response = await submitAccount();
-    if (response.status) {
-      alert("Oups... something is not completely right... pls reload");
-    } else {
-      displaySuccesScreen(response);
-      signInComplete(response);
-      setTimeout(() => {
-        document.querySelector("body").style.transform = "translateY(0)";
-      }, 3000);
-    }
-  });
+  }
 }
 
 function checkSyntaxRequirements() {
@@ -123,6 +113,24 @@ async function checkForAccount(property, value) {
     return true;
   } else {
     return false;
+  }
+}
+
+//
+//
+// Submit account
+
+async function prepareSubmitRequest() {
+  //TODO: validate credit card
+  const response = await submitAccount();
+  if (response.status) {
+    alert("Oups... something is not completely right... pls reload");
+  } else {
+    displaySuccesScreen(response);
+    signInComplete(response);
+    setTimeout(() => {
+      document.querySelector("body").style.transform = "translateY(0)";
+    }, 3000);
   }
 }
 

@@ -1,6 +1,5 @@
 "use strict";
-import { post } from "./rest_actions.js";
-import { getJSON } from "./rest_actions.js";
+import { post, getJSON } from "./rest_actions.js";
 
 let orderList = [];
 
