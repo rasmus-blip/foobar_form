@@ -72,9 +72,15 @@ fieldset {
 }
 
 .arrow_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  & .next {
+    place-self: end;
+    grid-area: 1/2/2/3;
+  }
+  & .back {
+    grid-area: 1/1/2/2;
+  }
 }
 
 #succes_screen,
@@ -143,4 +149,15 @@ figure {
 
 #your_order .submit {
   display: none;
+}
+
+#checkout,
+#card_details,
+#account_details {
+  justify-content: space-between;
+  & .middle {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 2rem;
+  }
 }
