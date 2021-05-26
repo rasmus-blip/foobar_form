@@ -4,12 +4,13 @@ import "./sass/style.scss";
 import { setUpOrderForm } from "./order_form.js";
 import { setUpAccountCreation } from "./create_account.js";
 import Inputmask from "inputmask";
-// import restrictedInput from "restricted-input";
+import { checkForTab } from "./tabbing.js";
 
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   document.addEventListener("keydown", checkForTab);
+
   const cardNrMask = new Inputmask(`9999 9999 9999 9999`);
   const exprDateMask = new Inputmask(`99/99`);
   const cvvMask = new Inputmask(`999`);
@@ -29,17 +30,6 @@ function init() {
     cvvMask.mask(input);
   });
 
-  // const formattedCreditCardInput = new restrictedInput({
-  //   element: document.querySelector(`#account_form [name="card_number"]`),
-  //   pattern: "{{9999}} {{9999}} {{9999}} {{9999}}",
-  // });
-
   setUpOrderForm();
   setUpAccountCreation();
-}
-
-function checkForTab(event) {
-  if (event.key == "Tab") {
-    console.log("hej mathias");
-  }
 }
