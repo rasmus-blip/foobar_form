@@ -1,5 +1,5 @@
 "use strict";
-import { getBeersOnTap } from "./order_form.js";
+import { getBeersOnTap } from "./main.js";
 import { getJSON } from "./rest_actions";
 import { initialSlideCalc } from "./fieldset_change";
 
