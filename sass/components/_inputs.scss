@@ -88,6 +88,10 @@ span.icon {
     background-size: cover;
   }
 
+  &.email::after {
+    background-image: url("../icons/mail.svg");
+  }
+
   &.username::after {
     background-image: url("../icons/person.svg");
   }
