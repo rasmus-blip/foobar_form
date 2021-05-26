@@ -100,3 +100,42 @@ fieldset {
     display: flex;
   }
 }
+
+figure {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $medium_inner;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border-radius: inherit;
+    box-shadow: $medium_inner;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $inner_light;
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+}

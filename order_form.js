@@ -3,7 +3,6 @@
 import "./sass/style.scss";
 import { initialSlideCalc, slideFieldset } from "./fieldset_change.js";
 import { buildOrderList, submitOrder } from "./order_submition.js";
-import { setUpAccountCreation } from "./create_account.js";
 import { prepareSignInRequest } from "./sign_in.js";
 import { getJSON } from "./rest_actions.js";
 
@@ -85,8 +84,8 @@ function appendBeers(taps) {
     if (document.querySelector(`#${convertedBeerName}`) === null) {
       const klon = temp.cloneNode(true).content;
 
-      //   klon.querySelector("img").src = `./images/${}`
-      //   klon.querySelector("img").setAttribute("alt", beer.beer);
+      klon.querySelector("img").src = `./images/${convertedBeerName}.png`;
+      klon.querySelector("img").setAttribute("alt", tap.beer);
       klon.querySelector("label").textContent = tap.beer;
       klon.querySelector("label").setAttribute("for", convertedBeerName);
       klon.querySelector("input").setAttribute("id", convertedBeerName);
