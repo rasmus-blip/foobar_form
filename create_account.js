@@ -1,9 +1,12 @@
 "use strict";
 import { post, getJSON } from "./rest_actions.js";
 import { signInComplete } from "./sign_in.js";
-import { slideFieldset } from "./fieldset_change.js";
+import { slideFieldset, initialSlideCalc } from "./fieldset_change.js";
+import { setUpBackBtns } from "./order_form.js";
 
 export function setUpAccountCreation() {
+  initialSlideCalc("account_form");
+  setUpBackBtns("account_form");
   document.querySelector("#account_details .next").addEventListener("click", validateAccDetails);
   document.querySelector("#card_details .submit").addEventListener("click", prepareSubmitRequest);
 }
@@ -11,11 +14,12 @@ export function setUpAccountCreation() {
 //
 //
 // Account details validation
-async function validateAccDetails() {
+async function validateAccDetails(e) {
   const syntaxReqMet = checkSyntaxRequirements();
 
   if (syntaxReqMet) {
-    const isUnique = doesAccountExist();
+    const isUnique = await doesAccountExist();
+    console.log(isUnique);
 
     if (isUnique) {
       slideFieldset(e.target, "account_form");
@@ -119,7 +123,6 @@ async function checkForAccount(property, value) {
 //
 //
 // Submit account
-
 async function prepareSubmitRequest() {
   //TODO: validate credit card
   const response = await submitAccount();
