@@ -134,9 +134,8 @@ function appendOrderList(orderList) {
     const klon = temp.cloneNode(true).content;
     const convertedBeerName = convertBeerString(order.name);
 
-    // klon.querySelector("img").src = convertedBeerName;
-    // klon.querySelector("img").setAttribute("alt", order.beer);
-
+    klon.querySelector("img").src = `./images/${convertedBeerName}.png`;
+    klon.querySelector("img").setAttribute("alt", order.name);
     klon.querySelector("h2").textContent = order.name;
     klon.querySelector("p").textContent = order.amount;
 

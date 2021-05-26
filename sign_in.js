@@ -38,7 +38,7 @@ export function signInComplete(userData) {
   accInfo.user = userData.user_name;
   document.querySelector("#sign_in").remove();
   document.querySelector("#checkout").remove();
-  document.querySelector("#your_order .submit").hidden = false;
+  document.querySelector("#your_order .submit").style.display = "block";
   document.querySelector("#your_order .next").style.display = "none";
   document.querySelector("#order .back").style.display = "none";
   initialSlideCalc("order_form");

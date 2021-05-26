@@ -38,11 +38,15 @@ fieldset {
     overflow-y: scroll;
   }
   & li {
-    margin: 20px 0;
+    margin: 50px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+}
+
+#your_order li {
+  flex-direction: row;
 }
 
 .form_ctrl:not(li) {
@@ -110,18 +114,8 @@ figure {
   justify-content: center;
   box-shadow: $medium_inner;
   position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    right: -15px;
-    bottom: -15px;
-    border-radius: inherit;
-    box-shadow: $medium_inner;
-    z-index: -1;
-  }
+  padding: 15px;
+  margin-bottom: 7px;
 
   &::after {
     content: "";
@@ -138,4 +132,15 @@ figure {
     height: 100%;
     border-radius: inherit;
   }
+}
+
+#your_order figure {
+  width: 80px;
+  height: 80px;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+#your_order .submit {
+  display: none;
 }
