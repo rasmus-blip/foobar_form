@@ -22,5 +22,8 @@
   "devDependencies": {
     "sass": "^1.32.12",
     "vite": "^2.3.0"
+  },
+  "dependencies": {
+    "inputmask": "^5.0.5"
   }
 }

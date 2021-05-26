@@ -70,7 +70,7 @@
               <div class="flex_container">
                 <div class="form_ctrl">
                   <label for="exp_date">Exp. date</label>
-                  <span class="date icon"> <input placeholder="24/12" type="text" name="exp_date" id="exp_date" /></span>
+                  <span class="date icon"> <input placeholder="dd/mm" type="text" name="exp_date" id="exp_date" /></span>
                 </div>
                 <div class="form_ctrl">
                   <label for="cvv">CVV</label>
@@ -176,18 +176,18 @@
               <div class="form_ctrl">
                 <label for="account_card_number">Card number</label>
                 <span class="cardnr icon">
-                  <input placeholder="0123 4567 8901 1222" type="text" name="card_number" id="account_card_number" maxlength="16"
+                  <input placeholder="0123 4567 8901 1222" type="text" name="card_number" id="account_card_number" required minlength="16" maxlength="16"
                 /></span>
               </div>
 
               <div class="flex_container">
                 <div class="form_ctrl">
                   <label for="account_exp_date">Exp. date</label>
-                  <span class="date icon"> <input placeholder="24/12" type="text" name="exp_date" id="account_exp_date" /></span>
+                  <span class="date icon"> <input placeholder="dd/mm" type="text" name="exp_date" id="account_exp_date" /></span>
                 </div>
                 <div class="form_ctrl">
                   <label for="account_cvv">CVV</label>
-                  <span class="cvv icon"> <input placeholder="123" type="text" name="cvv" id="account_cvv" /></span>
+                  <span class="cvv icon"> <input placeholder="123" type="text" name="cvv" id="account_cvv" required minlength="3" maxlength="3" /></span>
                 </div>
               </div>
               <button class="submit">Create account</button>
