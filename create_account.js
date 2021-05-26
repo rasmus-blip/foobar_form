@@ -18,8 +18,10 @@ async function validateAccDetails(e) {
   const syntaxReqMet = checkSyntaxRequirements();
 
   if (syntaxReqMet) {
+    document.querySelector("#account_form .loading").classList.add("load");
+    document.querySelector("#account_form .loading p").textContent = "Validating email and username...";
     const isUnique = await doesAccountExist();
-    console.log(isUnique);
+    document.querySelector("#account_form .loading").classList.remove("load");
 
     if (isUnique) {
       slideFieldset(e.target, "account_form");
@@ -125,7 +127,11 @@ async function checkForAccount(property, value) {
 // Submit account
 async function prepareSubmitRequest() {
   //TODO: validate credit card
+
+  document.querySelector("#account_form .loading").classList.add("load");
+  document.querySelector("#account_form .loading p").textContent = "Creating account...";
   const response = await submitAccount();
+  document.querySelector("#account_form .loading").classList.remove("load");
   if (response.status) {
     alert("Oups... something is not completely right... pls reload");
   } else {

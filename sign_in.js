@@ -9,9 +9,12 @@ const accInfo = {};
 // Gets data for the sign in request, and detemerines what to do depending on sign in result
 export async function prepareSignInRequest() {
   this.removeEventListener("click", prepareSignInRequest);
+  document.querySelector("#order_form .loading").classList.add("load");
+  document.querySelector("#order_form .loading p").textContent = "Requesting sign in...";
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
   const signInResult = await requestSignIn(username, password);
+  document.querySelector("#order_form .loading").classList.remove("load");
 
   if (signInResult === false) {
     this.addEventListener("click", prepareSignInRequest);
