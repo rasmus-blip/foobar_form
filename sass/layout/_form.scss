@@ -35,6 +35,7 @@ fieldset {
 
   & ul {
     height: 100%;
+    border-radius: inherit;
     overflow-y: scroll;
   }
   & li {
@@ -42,6 +43,10 @@ fieldset {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  &#order ul {
+    box-shadow: $small_inner;
   }
 }
 
@@ -78,7 +83,8 @@ fieldset {
     place-self: end;
     grid-area: 1/2/2/3;
   }
-  & .back {
+
+  & & .back {
     grid-area: 1/1/2/2;
   }
 }
