@@ -4,15 +4,11 @@ Signing in (og alt herunder) - DONE
 
 validation on each fieldset - DONE
 
-general styling, margin here and there - VIGTIG
-
 Scroll-bar styling - DONE
 
-IMG on "order" and "your order" - VIGTIG
+IMG on "order" and "your order" - INITIALLY DONE
 
 ::after icons on input-fields - done (email icon are missing)
-
-Logo - VIGTIG
 
 Loading screen - VIGTIG
 
@@ -34,6 +30,8 @@ Be sure tabbing dont breake the site, double clicking, ENTERing - VIGTIG
 
 Fix typos - VIGTIG
 
-Cvv, exp date max length - VIGTIG
+Cvv, exp date max length - VIGTIG;
 
-Themes
+general styling, margin here and there - VIGTIG
+
+Logo - VIGTIG
