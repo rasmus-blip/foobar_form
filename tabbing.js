@@ -20,6 +20,5 @@ function preventTabbing(event) {
   const focusedElement = document.querySelector(":focus");
   if (focusedElement !== null && focusedElement.classList.contains("next")) {
     event.preventDefault();
-    console.log("hehehe");
   }
 }

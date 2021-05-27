@@ -28,10 +28,14 @@ Cvv, exp date max length - DONE;
 
 Position next / back btns - done
 
-general styling, margin here and there - VIGTIG
-
 Be sure tabbing dont breake the site, double clicking, ENTERing - DONE
 
 Fix typos - DONE
+
+general styling, margin here and there - VIGTIG
+
+Username / pass validation - VIGTIG
+
+Card validation - DONE
 
 Logo - VIGTIG

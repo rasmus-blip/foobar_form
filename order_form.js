@@ -5,6 +5,7 @@ import { initialSlideCalc, slideFieldset } from "./fieldset_change.js";
 import { buildOrderList, submitOrder } from "./order_submition.js";
 import { prepareSignInRequest } from "./sign_in.js";
 import { getJSON } from "./rest_actions.js";
+import { creditCardValidation } from "./card_validation.js";
 
 export function setUpOrderForm() {
   //Calc length of the form-sliders initally
@@ -58,7 +59,30 @@ export function setUpOrderForm() {
 
   //SUBMIT ORDER BTNS
   document.querySelector("#your_order .submit").addEventListener("click", submitOrder);
-  document.querySelector("#checkout button").addEventListener("click", submitOrder);
+  document.querySelector("#checkout button").addEventListener("click", checkoutSubmit);
+  function checkoutSubmit() {
+    this.removeEventListener("click", checkoutSubmit);
+
+    const cardInfo = {
+      number: document.querySelector(`#checkout [name="card_number"]`).value,
+      expDate: document.querySelector(`#checkout [name="exp_date" ]`).value,
+      cvv: document.querySelector(`#checkout [name="cvv" ]`).value,
+    };
+
+    const isValid = creditCardValidation(cardInfo);
+    if (isValid) {
+      submitOrder();
+    } else {
+      document.querySelector("#checkout .top p").classList.remove("error");
+      document.querySelector("#checkout .top p").offsetHeight;
+      document.querySelector("#checkout .top p").classList.add("error");
+      this.addEventListener("click", checkoutSubmit);
+      const allInPuts = document.querySelectorAll("#checkout input");
+      allInPuts.forEach((input) => {
+        input.addEventListener("click", () => document.querySelector("#checkout .top p").classList.remove("error"));
+      });
+    }
+  }
 }
 
 //

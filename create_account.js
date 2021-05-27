@@ -3,6 +3,7 @@ import { post, getJSON } from "./rest_actions.js";
 import { signInComplete } from "./sign_in.js";
 import { slideFieldset, initialSlideCalc } from "./fieldset_change.js";
 import { setUpBackBtns } from "./order_form.js";
+import { creditCardValidation } from "./card_validation.js";
 
 export function setUpAccountCreation() {
   initialSlideCalc("account_form");
@@ -126,20 +127,41 @@ async function checkForAccount(property, value) {
 //
 // Submit account
 async function prepareSubmitRequest() {
-  //TODO: validate credit card
+  this.removeEventListener("click", prepareSubmitRequest);
 
-  document.querySelector("#account_form .loading").classList.add("load");
-  document.querySelector("#account_form .loading p").textContent = "Creating account...";
-  const response = await submitAccount();
-  document.querySelector("#account_form .loading").classList.remove("load");
-  if (response.status) {
-    alert("Oups... something is not completely right... pls reload");
+  const cardInfo = {
+    number: document.querySelector(`#card_details [name="card_number"]`).value,
+    expDate: document.querySelector(`#card_details [name="exp_date" ]`).value,
+    cvv: document.querySelector(`#card_details [name="cvv" ]`).value,
+  };
+
+  const isValid = creditCardValidation(cardInfo);
+
+  if (isValid === false) {
+    document.querySelector("#card_details .top p").classList.remove("error");
+    document.querySelector("#card_details .top p").offsetHeight;
+    document.querySelector("#card_details .top p").classList.add("error");
+
+    const allInputs = document.querySelectorAll("#card_details input");
+    allInputs.forEach((input) => {
+      input.addEventListener("click", () => document.querySelector("#card_details .top p").classList.remove("error"));
+    });
+    this.addEventListener("click", prepareSubmitRequest);
   } else {
-    displaySuccesScreen(response);
-    signInComplete(response);
-    setTimeout(() => {
-      document.querySelector("body").style.transform = "translateY(0)";
-    }, 3000);
+    document.querySelector("#account_form .loading").classList.add("load");
+    document.querySelector("#account_form .loading p").textContent = "Creating account...";
+    const response = await submitAccount();
+    document.querySelector("#account_form .loading").classList.remove("load");
+    if (response.status) {
+      this.addEventListener("click", prepareSubmitRequest);
+      alert("Oups... something is not completely right... pls reload");
+    } else {
+      displaySuccesScreen(response);
+      signInComplete(response);
+      setTimeout(() => {
+        document.querySelector("body").style.transform = "translateY(0)";
+      }, 3000);
+    }
   }
 }
 
@@ -150,7 +172,7 @@ async function submitAccount() {
     password: document.querySelector("#password_create").value,
     card_number: document.querySelector("#account_card_number").value,
     expiration_date: document.querySelector("#account_exp_date").value,
-    cvv: document.querySelector("#account_cvv"),
+    cvv: document.querySelector("#account_cvv").value,
   };
   const url = "https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database";
 
