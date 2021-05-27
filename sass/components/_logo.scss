@@ -1,0 +1,16 @@
+@import "../abstracts/";
+
+#logo {
+  position: fixed;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  top: 0.5rem;
+  right: 0.5rem;
+  box-shadow: $small_inner;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "roboto", sans-serif;
+  font-size: 0.8rem;
+  color: $heading_clr;
+}
