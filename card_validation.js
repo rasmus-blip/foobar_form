@@ -1,7 +1,7 @@
 export function creditCardValidation(cardInfo) {
   const cardNr = remaskCardNr(cardInfo.number);
-  const expDate = remaskExpDate(cardInfo.expDate);
-  const cvv = remaskCvv(cardInfo.cvv);
+  const expDate = isExpDateValid(cardInfo.expDate);
+  const cvv = isCvvValid(cardInfo.cvv);
 
   if (cardNr && expDate && cvv) {
     return true;
@@ -10,7 +10,7 @@ export function creditCardValidation(cardInfo) {
   }
 }
 
-function remaskCardNr(number) {
+function isCardNrValid(number) {
   if (number === "") {
     return false;
   }
@@ -24,7 +24,7 @@ function remaskCardNr(number) {
   }
 }
 
-function remaskExpDate(expDate) {
+function isExpDateValid(expDate) {
   if (expDate === "") {
     return false;
   }
@@ -44,17 +44,15 @@ function remaskExpDate(expDate) {
     return false;
   } else if (year + 2000 === currentYear && month < currentMonth) {
     return false;
-  } else if (month < 10) {
-    return `0${month}/${year}`;
   } else {
-    return `${month}/${year}`;
+    return true;
   }
 }
 
-function remaskCvv(cvv) {
+function isCvvValid(cvv) {
   if (isNaN(cvv) || cvv === "") {
     return false;
   } else {
-    return cvv;
+    return true;
   }
 }

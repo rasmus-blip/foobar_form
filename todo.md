@@ -38,4 +38,4 @@ Username / pass validation - VIGTIG
 
 Card validation - DONE
 
-Logo - VIGTIG
+Logo - DONE
