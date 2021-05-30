@@ -14,6 +14,8 @@ export function setUpAccountCreation() {
 
 //
 //
+//
+//
 // Account details validation
 async function validateAccDetails(e) {
   const syntaxReqMet = checkSyntaxRequirements();
@@ -30,6 +32,7 @@ async function validateAccDetails(e) {
   }
 }
 
+// Returns true or false, wheter account details requirements are met. if a field fails, it displays an error.
 function checkSyntaxRequirements() {
   //USERNAME
   const usernameIsValid = document.querySelector("#username_create").checkValidity();
@@ -72,6 +75,7 @@ function checkSyntaxRequirements() {
   }
 }
 
+// Returns true or false, wheter if username or emeail already is registered.
 async function doesAccountExist() {
   //Check if email // username are already registered
   //USERNAME
@@ -101,11 +105,13 @@ async function doesAccountExist() {
   }
 }
 
+// Displays succes screen when account is created
 function displaySuccesScreen(response) {
   document.querySelector("#succes_screen span").textContent = response.user_name;
   document.querySelector("#succes_screen").classList.add("show");
 }
 
+// Clicking on input-fields, removes its error-message.
 function rmError() {
   this.removeEventListener("click", rmError);
   const errorSpan = this.parentElement.parentElement.querySelector(".error");
@@ -113,6 +119,7 @@ function rmError() {
   errorSpan.classList.remove("error");
 }
 
+// Returns true / false whether property and value is already registered in RestDb.
 async function checkForAccount(property, value) {
   const url = `https://frontendspring2021-a6f0.restdb.io/rest/foobar-user-database?q={"${property}": "${value}"}`;
   const jsonData = await getJSON(url, "headersRestDB");
@@ -125,7 +132,9 @@ async function checkForAccount(property, value) {
 
 //
 //
+//
 // Submit account
+// Controller for submitting an account.
 async function prepareSubmitRequest() {
   // validates credit card info
   this.removeEventListener("click", prepareSubmitRequest);
@@ -171,6 +180,7 @@ async function prepareSubmitRequest() {
   }
 }
 
+// Post request for account details. Returns the result of the request.
 async function submitAccount() {
   const dataToPost = {
     user_name: document.querySelector("#username_create").value,

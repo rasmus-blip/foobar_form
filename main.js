@@ -39,6 +39,7 @@ function init() {
     cvvMask.mask(input);
   });
 
+  // Setup on forms
   setUpOrderForm();
   setUpAccountCreation();
 }
