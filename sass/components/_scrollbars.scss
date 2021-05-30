@@ -9,3 +9,8 @@
   background: $heading_clr;
   border-radius: 4px;
 }
+
+//For firefox - not nice though...
+* {
+  scrollbar-width: thin;
+}
