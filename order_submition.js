@@ -5,14 +5,13 @@ let orderList = [];
 
 export async function submitOrder() {
   console.log("hej");
-  this.removeEventListener("click", submitOrder);
+
   const url = "https://foobarfirefjerdedele.herokuapp.com/order";
   const result = await post(orderList, url, "headersHeroku");
 
   if (result.status === 200) {
     orderTracking(result.id);
   } else {
-    this.addEventListener("click", submitOrder);
     alert("Oupss, this i not how its supposed to work...");
   }
 }
@@ -36,15 +35,16 @@ async function orderTracking(id) {
       orderTracking(id);
     }, 1000);
   } else if (serving.includes(id)) {
-    document.querySelector("#order_submitted p").textContent = "Your order is getting prepared";
+    document.querySelector("#order_submitted p").textContent = "Your order is getting prepared.";
     document.querySelector("#order_submitted").classList.add("show");
 
     setTimeout(() => {
       orderTracking(id);
     }, 1000);
   } else {
-    document.querySelector("#order_submitted p").textContent = "Your order is ready";
-    document.querySelector("#order_submitted p").nextSibling.remove();
+    document.querySelector("#order_submitted h2").textContent = "Your order is ready";
+    document.querySelector("#order_submitted p").remove();
+    document.querySelector("#order_submitted p").remove();
     document.querySelector("#order_submitted").classList.add("show");
   }
 }

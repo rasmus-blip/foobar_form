@@ -4,7 +4,7 @@ import { getJSON } from "./rest_actions";
 import { initialSlideCalc } from "./fieldset_slide";
 
 let signedIn = false;
-const accInfo = {};
+let accInfo = null;
 
 // Gets data for the sign in request, and detemerines what to do depending on sign in result
 export async function prepareSignInRequest() {
@@ -38,7 +38,7 @@ async function requestSignIn(username, password) {
 // Removes the sign in & card info fieldsets and reCalcs the order-forms slide-width
 export function signInComplete(userData) {
   signedIn = true;
-  accInfo.user = userData.user_name;
+  accInfo = userData[0];
   document.querySelector("#sign_in").remove();
   document.querySelector("#checkout").remove();
   document.querySelector("#your_order .submit").style.display = "block";
@@ -46,4 +46,8 @@ export function signInComplete(userData) {
   document.querySelector("#order .back").style.display = "none";
   initialSlideCalc("order_form");
   getBeersOnTap();
+}
+
+export function getAccInfo() {
+  return accInfo;
 }
