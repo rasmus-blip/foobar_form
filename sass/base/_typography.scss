@@ -18,13 +18,18 @@ h2 {
   margin-bottom: 0.6rem;
   font-size: 1.2rem;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 input,
 button {
   color: $para_clr;
   font-size: 1.2rem;
+  font-weight: 400;
   font-family: "roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .txt_btn {
