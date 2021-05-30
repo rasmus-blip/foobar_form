@@ -112,3 +112,30 @@ span.icon {
     background-image: url("../icons/question.svg");
   }
 }
+
+.dark4ever span.icon,
+.darkmode span.icon {
+  &.email::after {
+    background-image: url("../icons/mail_dark.svg");
+  }
+
+  &.username::after {
+    background-image: url("../icons/person_dark.svg");
+  }
+
+  &.password::after {
+    background-image: url("../icons/lock_dark.svg");
+  }
+
+  &.cardnr::after {
+    background-image: url("../icons/card_dark.svg");
+  }
+
+  &.date::after {
+    background-image: url("../icons/calendar_dark.svg");
+  }
+
+  &.cvv::after {
+    background-image: url("../icons/question_dark.svg");
+  }
+}
