@@ -127,6 +127,7 @@ async function checkForAccount(property, value) {
 //
 // Submit account
 async function prepareSubmitRequest() {
+  // validates credit card info
   this.removeEventListener("click", prepareSubmitRequest);
 
   const cardInfo = {
@@ -137,6 +138,7 @@ async function prepareSubmitRequest() {
 
   const isValid = creditCardValidation(cardInfo);
 
+  // Not valid -> show error
   if (isValid === false) {
     document.querySelector("#card_details .top p").classList.remove("error");
     document.querySelector("#card_details .top p").offsetHeight;
@@ -147,11 +149,15 @@ async function prepareSubmitRequest() {
       input.addEventListener("click", () => document.querySelector("#card_details .top p").classList.remove("error"));
     });
     this.addEventListener("click", prepareSubmitRequest);
+
+    // Valid -> Post account to RestDb
   } else {
     document.querySelector("#account_form .loading").classList.add("load");
     document.querySelector("#account_form .loading p").textContent = "Creating account...";
     const response = await submitAccount();
     document.querySelector("#account_form .loading").classList.remove("load");
+
+    // Just to be sure we dont have a server error in the backend
     if (response.status) {
       this.addEventListener("click", prepareSubmitRequest);
       alert("Oups... something is not completely right... pls reload");

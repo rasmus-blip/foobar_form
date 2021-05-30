@@ -25,27 +25,6 @@ export function setUpOrderForm() {
   document.querySelector("#checkout button").addEventListener("click", submitReqFromCheckout);
 }
 
-function submitReqFromYourOrder() {
-  console.log("hej");
-  this.removeEventListener("click", submitReqFromYourOrder);
-  const accInfo = getAccInfo();
-  const cardInfo = {
-    number: accInfo.card_number,
-    expDate: accInfo.expiration_date,
-    cvv: accInfo.cvv,
-  };
-  console.log(cardInfo);
-
-  const isValid = creditCardValidation(cardInfo);
-
-  if (isValid) {
-    submitOrder();
-  } else {
-    this.addEventListener("click", submitReqFromYourOrder);
-    alert("Ouch.... are you trying to hack the system??");
-  }
-}
-
 //
 //
 //
@@ -181,6 +160,29 @@ function appendOrderList(orderList) {
 
   if (document.querySelector("#checkout")) {
     document.querySelector("#checkout p span").textContent = toPay + "DKK";
+  }
+}
+
+// Gets the user data from the variable in sign_in.js, and validates the credit card info.
+// Then submits the order
+function submitReqFromYourOrder() {
+  console.log("hej");
+  this.removeEventListener("click", submitReqFromYourOrder);
+  const accInfo = getAccInfo();
+  const cardInfo = {
+    number: accInfo.card_number,
+    expDate: accInfo.expiration_date,
+    cvv: accInfo.cvv,
+  };
+  console.log(cardInfo);
+
+  const isValid = creditCardValidation(cardInfo);
+
+  if (isValid) {
+    submitOrder();
+  } else {
+    this.addEventListener("click", submitReqFromYourOrder);
+    alert("Ouch.... are you trying to hack the system??");
   }
 }
 
