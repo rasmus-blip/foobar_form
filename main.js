@@ -9,6 +9,9 @@ import { checkForTab } from "./tabbing.js";
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
+  setTheming();
+  setInterval(setTheming, 5000);
+
   // Building a tab-navgation logic.
   document.addEventListener("keydown", checkForTab);
 
@@ -42,4 +45,13 @@ function init() {
   // Setup on forms
   setUpOrderForm();
   setUpAccountCreation();
+}
+
+function setTheming() {
+  const hours = new Date().getHours();
+  if (hours >= 18 || hours <= 6) {
+    document.querySelector("body").classList.add("darkmode");
+  } else {
+    document.querySelector("body").classList.remove("darkmode");
+  }
 }
