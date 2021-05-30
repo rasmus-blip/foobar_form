@@ -1,7 +1,7 @@
 "use strict";
 
 import "./sass/style.scss";
-import { initialSlideCalc, slideFieldset } from "./fieldset_change.js";
+import { initialSlideCalc, slideFieldset } from "./fieldset_slide.js";
 import { buildOrderList, submitOrder } from "./order_submition.js";
 import { prepareSignInRequest } from "./sign_in.js";
 import { getJSON } from "./rest_actions.js";

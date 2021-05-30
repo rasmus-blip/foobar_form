@@ -1,7 +1,7 @@
 "use strict";
 import { getBeersOnTap } from "./order_form.js";
 import { getJSON } from "./rest_actions";
-import { initialSlideCalc } from "./fieldset_change";
+import { initialSlideCalc } from "./fieldset_slide";
 
 let signedIn = false;
 const accInfo = {};
