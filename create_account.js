@@ -1,7 +1,7 @@
 "use strict";
 import { post, getJSON } from "./rest_actions.js";
 import { signInComplete } from "./sign_in.js";
-import { slideFieldset, initialSlideCalc } from "./fieldset_change.js";
+import { slideFieldset, initialSlideCalc } from "./fieldset_slide.js";
 import { setUpBackBtns } from "./order_form.js";
 import { creditCardValidation } from "./card_validation.js";
 
