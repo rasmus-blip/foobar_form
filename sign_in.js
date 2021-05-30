@@ -48,6 +48,7 @@ export function signInComplete(userData) {
   getBeersOnTap();
 }
 
+// Returns the accInfo object - used to validate card-info when a user is signed in and places an order
 export function getAccInfo() {
   return accInfo;
 }

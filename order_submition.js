@@ -3,12 +3,12 @@ import { post, getJSON } from "./rest_actions.js";
 
 let orderList = [];
 
+// Requests to post orderlist to Heroku-DB
 export async function submitOrder() {
-  console.log("hej");
-
   const url = "https://foobarfirefjerdedele.herokuapp.com/order";
   const result = await post(orderList, url, "headersHeroku");
 
+  // Just to be sure we doesnt proceed if DB returns an error.
   if (result.status === 200) {
     orderTracking(result.id);
   } else {
@@ -49,7 +49,7 @@ async function orderTracking(id) {
   }
 }
 
-//Returns the index + 1 of the queueObj with same id as the subitted order
+//Returns the index + 1 of the queueObject with same id as the subitted order
 function getPlaceInQueue(queue, id) {
   let result = 0;
 

@@ -9,13 +9,17 @@ import { checkForTab } from "./tabbing.js";
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
+  // Building a tab-navgation logic.
   document.addEventListener("keydown", checkForTab);
+
+  // Damage control - so pressign enter doesnt break the form. TO FIX..
   document.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
     }
   });
 
+  // Input masking on credit card inputs
   const cardNrMask = new Inputmask(`9999 9999 9999 9999`);
   const exprDateMask = new Inputmask(`99/99`);
   const cvvMask = new Inputmask(`999`);

@@ -15,8 +15,6 @@ export function initialSlideCalc(form) {
 export function slideFieldset(button, form) {
   const slideDistance = 100 / noOfFieldsets[form];
 
-  console.log(button);
-
   //calculate new distance
   const isNext = button.classList.contains("next");
   if (isNext === true) {
