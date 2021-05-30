@@ -1,5 +1,5 @@
 export function creditCardValidation(cardInfo) {
-  const cardNr = remaskCardNr(cardInfo.number);
+  const cardNr = isCardNrValid(cardInfo.number);
   const expDate = isExpDateValid(cardInfo.expDate);
   const cvv = isCvvValid(cardInfo.cvv);
 
