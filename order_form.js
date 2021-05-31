@@ -166,7 +166,6 @@ function appendOrderList(orderList) {
 // Gets the user data from the variable in sign_in.js, and validates the credit card info.
 // Then submits the order
 function submitReqFromYourOrder() {
-  console.log("hej");
   this.removeEventListener("click", submitReqFromYourOrder);
   const accInfo = getAccInfo();
   const cardInfo = {
