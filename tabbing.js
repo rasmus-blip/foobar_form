@@ -17,7 +17,7 @@ function tabKeyPressed() {
 
   //Because this function is started after the event is fired, we cant preventDefault.
   //Therefore we set up a new event.
-  if (focusedElement.classList.contains("next")) {
+  if (focusedElement.dataset.tab === "stop") {
     document.addEventListener("keydown", reFocusTabbing);
   } else {
     document.removeEventListener("keydown", reFocusTabbing);
