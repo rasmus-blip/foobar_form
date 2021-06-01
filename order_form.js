@@ -168,6 +168,7 @@ function appendOrderList(orderList) {
 function submitReqFromYourOrder() {
   this.removeEventListener("click", submitReqFromYourOrder);
   const accInfo = getAccInfo();
+  console.log(accInfo);
   const cardInfo = {
     number: accInfo.card_number,
     expDate: accInfo.expiration_date,

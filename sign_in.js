@@ -38,7 +38,14 @@ async function requestSignIn(username, password) {
 // Removes the sign in & card info fieldsets and reCalcs the order-forms slide-width
 export function signInComplete(userData) {
   signedIn = true;
-  accInfo = userData[0];
+
+  if (userData[0]) {
+    accInfo = userData[0];
+  } else {
+    accInfo = userData;
+  }
+
+  console.log(userData);
   document.querySelector("#sign_in").remove();
   document.querySelector("#checkout").remove();
   document.querySelector("#your_order .submit").style.display = "block";
