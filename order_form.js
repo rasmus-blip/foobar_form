@@ -190,7 +190,7 @@ function submitReqFromYourOrder() {
 //
 // CHECKOUT - FIELDSET
 function submitReqFromCheckout() {
-  this.removeEventListener("click", submitFromCheckout);
+  this.removeEventListener("click", submitReqFromCheckout);
 
   const cardInfo = {
     number: document.querySelector(`#checkout [name="card_number"]`).value,
@@ -214,7 +214,7 @@ function submitReqFromCheckout() {
       input.addEventListener("click", () => document.querySelector("#checkout .top p").classList.remove("error"));
     });
 
-    this.addEventListener("click", submitFromCheckout);
+    this.addEventListener("click", submitReqFromCheckout);
   }
 }
 
