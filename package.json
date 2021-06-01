@@ -24,6 +24,6 @@
     "vite": "^2.3.0"
   },
   "dependencies": {
-    "inputmask": "^5.0.5"
+    "inputmask": "^5.0.6-beta.57"
   }
 }

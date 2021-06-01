@@ -22,14 +22,14 @@ button {
   &.next:not(.txt_btn) {
     width: 30px;
     height: 30px;
-    background-image: url("./icons/next_icon.svg");
+    background-image: url("../icons/next_icon.svg");
     background-repeat: no-repeat;
     box-shadow: none;
   }
   &.back {
     width: 30px;
     height: 30px;
-    background-image: url("./icons/back_icon.svg");
+    background-image: url("../icons/back_icon.svg");
     background-repeat: no-repeat;
     box-shadow: none;
   }
