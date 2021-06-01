@@ -34,3 +34,13 @@ button {
     box-shadow: none;
   }
 }
+
+.dark4ever button,
+.darkmode button {
+  &.next:not(.txt_btn) {
+    background-image: url("../icons/next_icon_dark.svg");
+  }
+  &.back {
+    background-image: url("../icons/back_icon_dark.svg");
+  }
+}
