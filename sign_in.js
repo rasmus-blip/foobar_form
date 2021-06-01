@@ -18,7 +18,17 @@ export async function prepareSignInRequest() {
 
   if (signInResult === false) {
     this.addEventListener("click", prepareSignInRequest);
-    console.log("bad sign in request");
+    const errorSpan = document.querySelector("#sign_in .error_span");
+    errorSpan.textContent = "Username or password not correct";
+    errorSpan.classList.add("error");
+
+    const allInPuts = document.querySelectorAll("#sign_in input");
+    allInPuts.forEach((input) => {
+      input.addEventListener("click", () => {
+        errorSpan.textContent = "";
+        errorSpan.classList.remove("error");
+      });
+    });
   } else {
     signInComplete(signInResult);
   }
