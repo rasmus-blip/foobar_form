@@ -38,7 +38,7 @@ function setUpSignInField() {
   //CREATE ACCOUNT
   const createAccBtn = document.querySelector(".create_acc");
   createAccBtn.addEventListener("click", () => {
-    document.querySelector("body").style.transform = "translateY(-100%)";
+    document.querySelector("#viewport_slide").style.transform = "translateY(-50%)";
     document.querySelector("#account_form").hidden = false;
   });
 

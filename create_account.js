@@ -174,7 +174,7 @@ async function prepareSubmitRequest() {
       displaySuccesScreen(response);
       signInComplete(response);
       setTimeout(() => {
-        document.querySelector("body").style.transform = "translateY(0)";
+        document.querySelector("#viewport_slide").style.transform = "translateY(0)";
       }, 3000);
     }
   }

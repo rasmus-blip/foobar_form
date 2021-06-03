@@ -1,6 +1,11 @@
 @import "../abstracts/";
 
 input {
+  //appearance none, so mobile devices have innershadow on inputs
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   width: 100%;
   border: none;
   background-color: $bg_clr;
