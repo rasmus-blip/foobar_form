@@ -54,8 +54,6 @@ export function signInComplete(userData) {
   } else {
     accInfo = userData;
   }
-
-  console.log(userData);
   document.querySelector("#sign_in").remove();
   document.querySelector("#checkout").remove();
   document.querySelector("#your_order .submit").style.display = "block";
