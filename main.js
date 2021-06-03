@@ -9,6 +9,10 @@ import { checkForTab } from "./tabbing.js";
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
+  //Interface height for mobile devices - 100vh in css causes scroll
+  setHeight();
+  window.addEventListener("resize", setHeight);
+
   setTheming();
   setInterval(setTheming, 5000);
 
@@ -54,4 +58,10 @@ function setTheming() {
   } else {
     document.querySelector("body").classList.remove("darkmode");
   }
+}
+
+function setHeight() {
+  //calculates the size of one vh-unit
+  const newVh = window.innerHeight * 0.01;
+  document.querySelector("body").style.setProperty("--custom-vh", `${newVh * 100}px`);
 }

@@ -5,7 +5,7 @@ body {
 }
 
 #viewport_control {
-  height: 100vh;
+  height: var(--custom-vh);
   overflow: hidden;
   transition: transform 1s cubic-bezier(0.59, -0.33, 0.34, 1.1);
 }
@@ -18,7 +18,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: var(--custom-vh);
 }
 
 form {
