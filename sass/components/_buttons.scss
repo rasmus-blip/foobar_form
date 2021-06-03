@@ -13,6 +13,11 @@ button {
     width: 50%;
     align-self: center;
     border-radius: 50px;
+    transition: box-shadow 0.05s;
+
+    &:active {
+      box-shadow: $small_outer;
+    }
   }
   &.txt_btn {
     text-align: left;

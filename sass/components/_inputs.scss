@@ -57,7 +57,7 @@ input {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.1s;
 
     &:active {
       box-shadow: $small_inner;
